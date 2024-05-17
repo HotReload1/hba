@@ -68,41 +68,44 @@ class _DialogContentState extends State<DialogContent> {
 
   book() async {
     if (formKey.currentState != null && formKey.currentState!.validate()) {
-      final res = await Get.to<PaymentStatus>(() => PaypalPaymentDemo(
-            item: {
-              "name": widget.room.type.toString(),
-              "quantity": nightsCount,
-              "price": widget.room.price.toString(),
-              "currency": "USD"
-            },
-            total: nightsCount * widget.room.price!,
-          ));
-      if (res != null) {
-        if (res == PaymentStatus.SUCCESS) {
-          BookedRoom bookedRoom = BookedRoom(
-              hotelId: widget.room.hotelId,
-              roomId: widget.room.id,
-              nightsCount: nightsCount,
-              totalPrice: nightsCount * widget.room.price!,
-              startDate: _startDateTime,
-              bookedDate: DateTime.now());
-          _bookRoomCubit.bookRoom(bookedRoom);
-        } else if (res == PaymentStatus.ERROR) {
-          showDialog(
-              context: context,
-              builder: (context) {
-                return CustomAlertDialog(
-                    icon: Icon(
-                      Icons.error,
-                      color: Colors.red,
-                      size: 50,
-                    ),
-                    title: "Error",
-                    content: "There is an error in payment process!",
-                    buttonTitle: "OK");
-              });
-        } else {
-          print("canceled");
+      BookedRoom bookedRoom = BookedRoom(
+          hotelId: widget.room.hotelId,
+          roomId: widget.room.id,
+          nightsCount: nightsCount,
+          totalPrice: nightsCount * widget.room.price!,
+          startDate: _startDateTime,
+          bookedDate: DateTime.now());
+      if (await _bookRoomCubit.checkIfRoomAvailable(bookedRoom)) {
+        await Future.delayed(Duration(milliseconds: 200));
+        final res = await Get.to<PaymentStatus>(() => PaypalPaymentDemo(
+              item: {
+                "name": widget.room.type.toString(),
+                "quantity": nightsCount,
+                "price": widget.room.price.toString(),
+                "currency": "USD"
+              },
+              total: nightsCount * widget.room.price!,
+            ));
+        if (res != null) {
+          if (res == PaymentStatus.SUCCESS) {
+            _bookRoomCubit.bookRoom(bookedRoom);
+          } else if (res == PaymentStatus.ERROR) {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return CustomAlertDialog(
+                      icon: Icon(
+                        Icons.error,
+                        color: Colors.red,
+                        size: 50,
+                      ),
+                      title: "error".tr,
+                      content: "errorInPaymentProcess".tr,
+                      buttonTitle: "ok".tr);
+                });
+          } else {
+            print("canceled");
+          }
         }
       }
     }
@@ -113,11 +116,13 @@ class _DialogContentState extends State<DialogContent> {
     return BlocListener<BookRoomCubit, BookRoomState>(
       bloc: _bookRoomCubit,
       listener: (context, state) {
+        print(state);
         if (state is BookRoomLoading) {
           LoadingOverlay.of(context).show();
+        } else if (state is BookRoomChecked) {
+          LoadingOverlay.of(context).hide();
         } else if (state is BookRoomLoaded) {
           LoadingOverlay.of(context).hide();
-          Navigator.of(context).pop();
           showDialog(
               context: context,
               builder: (context) {
@@ -127,9 +132,9 @@ class _DialogContentState extends State<DialogContent> {
                       color: Colors.green,
                       size: 50,
                     ),
-                    title: "Success",
-                    content: "Room has been booked successfully",
-                    buttonTitle: "OK");
+                    title: "success".tr,
+                    content: "bookingRoomSuccess".tr,
+                    buttonTitle: "ok".tr);
               });
         } else if (state is BookRoomError) {
           LoadingOverlay.of(context).hide();
@@ -144,9 +149,9 @@ class _DialogContentState extends State<DialogContent> {
                       color: Colors.red,
                       size: 50,
                     ),
-                    title: "Error",
-                    content: "There is an error.Please contact us",
-                    buttonTitle: "OK");
+                    title: "error".tr,
+                    content: state.error,
+                    buttonTitle: "ok".tr);
               });
         }
       },
@@ -169,7 +174,7 @@ class _DialogContentState extends State<DialogContent> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "Book this room",
+                  "bookThisRoom".tr,
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 20),
@@ -182,7 +187,7 @@ class _DialogContentState extends State<DialogContent> {
                         return "51".tr;
                       }
                     },
-                    labeltext: "Reservation Date",
+                    labeltext: "reservationDate".tr,
                     hinttext: "50".tr,
                     readOnly: true,
                     onTapTextField: () => selectDate(),
@@ -211,7 +216,7 @@ class _DialogContentState extends State<DialogContent> {
                       width: 10,
                     ),
                     Text(
-                      "${nightsCount} " + "nights",
+                      "${nightsCount} " + "nights".tr,
                       style: TextStyle(fontSize: 18),
                     ),
                     SizedBox(
@@ -241,7 +246,9 @@ class _DialogContentState extends State<DialogContent> {
                       child: SizedBox(),
                     ),
                     Text(
-                      "Total price: " + "${nightsCount * widget.room.price!}\$",
+                      "totalPrice".tr +
+                          ":" +
+                          "${nightsCount * widget.room.price!}\$",
                       style: TextStyle(fontSize: 18),
                     ),
                     Expanded(
@@ -251,7 +258,7 @@ class _DialogContentState extends State<DialogContent> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              "Pay Now",
+                              "payNow".tr,
                               style: TextStyle(
                                   color: AppColor.general, fontSize: 16),
                             ),

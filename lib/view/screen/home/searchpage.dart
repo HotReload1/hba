@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:hba/bloc/search/search_cubit.dart';
 import 'package:hba/core/constant/color.dart';
 import 'package:hba/core/localization/changelocal.dart';
@@ -89,7 +90,7 @@ class _SearchPageState extends State<SearchPage> {
                               color: AppColor.general,
                             ),
                           ),
-                          hintText: "Search",
+                          hintText: "search".tr,
                           hintStyle:
                               TextStyle(fontSize: 14, color: AppColor.general),
                         ),
@@ -197,8 +198,7 @@ class _SearchPageState extends State<SearchPage> {
                                   }),
                             )
                           : Center(
-                              child: Text(
-                                  "There is not any rooms with this filters!"),
+                              child: Text("noRoomsWithThisFilter".tr),
                             );
                     }
                     if (state is HotelsLoaded) {
@@ -246,9 +246,7 @@ class _SearchPageState extends State<SearchPage> {
                                     );
                                   }),
                             )
-                          : Center(
-                              child: Text(
-                                  "There is not any hotels with this filters!"));
+                          : Center(child: Text("noHotelsWithThisFilter".tr));
                     }
                     return SizedBox();
                   },

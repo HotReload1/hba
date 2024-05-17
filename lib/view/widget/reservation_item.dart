@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:hba/data/model/bookedRoom.dart';
 
 class ReservationItem extends StatelessWidget {
@@ -56,7 +57,7 @@ class ReservationItem extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '${bookedRoom.nightsCount} ' + "nights",
+                            '${bookedRoom.nightsCount} ' + "nights".tr,
                             style: TextStyle(
                               fontSize: 18.0,
                               fontWeight: FontWeight.w600,

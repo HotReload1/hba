@@ -15,4 +15,7 @@ class Constants {
     "Tartus",
     "Dayr az Zawr",
   ];
+
+  static const LANG_AR = 'ar';
+  static const LANG_EN = 'en';
 }

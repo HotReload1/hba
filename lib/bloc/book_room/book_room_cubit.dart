@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:get/get.dart';
 import 'package:hba/data/model/bookedRoom.dart';
 import 'package:hba/data/repository/book_room_repository.dart';
 import 'package:meta/meta.dart';
@@ -22,7 +23,25 @@ class BookRoomCubit extends Cubit<BookRoomState> {
         emit(BookRoomError(error: "There is an error!"));
       }
     } catch (e) {
-      emit(BookRoomError(error: "There is an error!"));
+      emit(BookRoomError(error: "errorContactUs".tr));
     }
+  }
+
+  Future<bool> checkIfRoomAvailable(BookedRoom bookedRoom) async {
+    emit(BookRoomLoading());
+    //try {
+    bool isRoomAvailable =
+        await _bookRoomRepository.checkIfRoomAvailable(bookedRoom);
+    if (isRoomAvailable) {
+      emit(BookRoomChecked());
+      return true;
+    } else {
+      emit(BookRoomError(error: "roomIsNotAvailable".tr));
+      return false;
+    }
+    // } catch (e) {
+    //   emit(BookRoomError(error: "errorContactUs".tr));
+    //   return false;
+    // }
   }
 }

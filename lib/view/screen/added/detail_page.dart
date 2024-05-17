@@ -51,12 +51,6 @@ class _DetailPageState extends State<DetailPage> {
           color: AppColor.general,
           onPressed: () => Navigator.pop(context),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.favorite, color: AppColor.general),
-          ),
-        ],
       ),
       body: GetBuilder<RoomDetailControllerImp>(
         builder: (controller) {
@@ -76,6 +70,23 @@ class _DetailPageState extends State<DetailPage> {
                                   fit: BoxFit.cover,
                                   height: 400,
                                   width: double.maxFinite,
+                                ),
+                                Positioned(
+                                  bottom: 10,
+                                  right: 10,
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        "roomNumber".tr,
+                                        style:
+                                            TextStyle(color: AppColor.general),
+                                      ),
+                                      Text(
+                                        widget.room.roomNumber!,
+                                        style: TextStyle(color: Colors.white),
+                                      )
+                                    ],
+                                  ),
                                 ),
                                 Positioned(
                                   bottom: 0,
@@ -106,8 +117,8 @@ class _DetailPageState extends State<DetailPage> {
                                             color: Colors.white,
                                           ),
                                         ),
-                                        const Text(
-                                          'night',
+                                        Text(
+                                          'night'.tr,
                                           style: TextStyle(
                                             fontSize: 16,
                                             color: Colors.white,
@@ -147,7 +158,7 @@ class _DetailPageState extends State<DetailPage> {
                                           itemBuilder: (context, _) =>
                                               const Icon(
                                             Icons.star,
-                                            color: Colors.blue,
+                                            color: AppColor.general,
                                           ),
                                           ignoreGestures: true,
                                           itemSize: 15,

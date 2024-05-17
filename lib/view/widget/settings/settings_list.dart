@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:hba/controller/settings_controller.dart';
 import 'package:hba/core/constant/color.dart';
 import 'package:hba/view/about_us_screen.dart';
+import 'package:hba/view/screen/app_language_screen.dart';
+import 'package:hba/view/screen/home/reservations.dart';
 import 'package:hba/view/widget/home/setting_item.dart';
 import 'package:hba/view/widget/settings/profile.dart';
 
@@ -28,26 +30,24 @@ class SettingsList extends StatelessWidget {
         children: [
           const Profile(),
           const SizedBox(height: 40),
-          const SettingItem(
-            title: "General Setting",
+          SettingItem(
+            title: "appLanguage".tr,
             leadingIcon: Icons.settings,
             leadingIconColor: AppColor.orange,
-          ),
-          const SizedBox(height: 10),
-          const SettingItem(
-            title: "Bookings",
-            leadingIcon: Icons.bookmark_border,
-            leadingIconColor: AppColor.blue,
-          ),
-          const SizedBox(height: 10),
-          const SettingItem(
-            title: "Favorites",
-            leadingIcon: Icons.favorite,
-            leadingIconColor: AppColor.red,
+            onTap: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => AppLanguageScreen())),
           ),
           const SizedBox(height: 10),
           SettingItem(
-            title: "About Us",
+            title: "reservations".tr,
+            leadingIcon: Icons.bookmark_border,
+            leadingIconColor: AppColor.blue,
+            onTap: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => ReservationsScreen())),
+          ),
+          const SizedBox(height: 10),
+          SettingItem(
+            title: "aboutUs".tr,
             leadingIcon: Icons.privacy_tip_outlined,
             leadingIconColor: AppColor.green,
             onTap: () => Navigator.of(context)
@@ -55,20 +55,20 @@ class SettingsList extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           SettingItem(
-            title: "Log Out",
+            title: "logOut".tr,
             leadingIcon: Icons.logout_outlined,
             leadingIconColor: AppColor.red,
             onTap: () {
               showCupertinoModalPopup(
                 context: context,
                 builder: (context) => CupertinoActionSheet(
-                  message: const Text("Would you like to log out?"),
+                  message: Text("logOutMessage".tr),
                   actions: [
                     CupertinoActionSheetAction(
                       onPressed: () => signOut(context),
-                      child: const Text(
-                        "Log Out",
-                        style: TextStyle(color: AppColor.actionColor),
+                      child: Text(
+                        "logOut".tr,
+                        style: const TextStyle(color: AppColor.actionColor),
                       ),
                     )
                   ],

@@ -7,9 +7,7 @@ import 'package:hba/view/screen/added/detail_page.dart';
 import 'package:hba/view/widget/home/listhotels.dart';
 import 'package:hba/core/class/handlingdataview.dart';
 import 'package:hba/core/constant/color.dart';
-import 'package:hba/data/datasource/static/data.dart';
 import 'package:hba/view/widget/home/appbar.dart';
-import 'package:hba/view/widget/home/listrooms.dart';
 import 'package:hba/view/widget/home/recommend_item.dart';
 
 class ExplorePage extends StatelessWidget {
@@ -52,20 +50,20 @@ _buildBody(List<RoomsModel> rooms) {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.fromLTRB(15, 0, 15, 5),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(15, 0, 15, 5),
           child: Text(
-            "Find and Book",
+            "findAndBook".tr,
             style: TextStyle(
               color: AppColor.labelColor,
               fontSize: 14,
             ),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.fromLTRB(15, 0, 15, 10),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(15, 0, 15, 10),
           child: Text(
-            "The Best Hotel Rooms",
+            "theBestHotel".tr,
             style: TextStyle(
               color: AppColor.textColor,
               fontWeight: FontWeight.w600,
@@ -77,22 +75,19 @@ _buildBody(List<RoomsModel> rooms) {
         const SizedBox(
           height: 15,
         ),
-        const Padding(
-          padding: EdgeInsets.fromLTRB(15, 0, 15, 10),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(15, 0, 15, 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Recommended",
+                "theBestRooms".tr,
                 style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w500,
                     color: AppColor.textColor),
               ),
-              Text(
-                "See all",
-                style: TextStyle(fontSize: 14, color: AppColor.darker),
-              ),
+              SizedBox()
             ],
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hba/core/constant/color.dart';
 import 'package:hba/data/datasource/static/data.dart';
@@ -22,7 +23,7 @@ class Profile extends StatelessWidget {
             height: 12,
           ),
           Text(
-            "Ibrahim",
+            FirebaseAuth.instance.currentUser!.displayName!,
             style: TextStyle(
               color: AppColor.textColor,
               fontSize: 20,
@@ -33,7 +34,7 @@ class Profile extends StatelessWidget {
             height: 5,
           ),
           Text(
-            "+011 5232282",
+            FirebaseAuth.instance.currentUser!.email!,
             style: TextStyle(
               color: AppColor.labelColor,
               fontSize: 14,

@@ -13,4 +13,8 @@ class BookRoomRepository {
     }
     return false;
   }
+
+  Future<bool> checkIfRoomAvailable(BookedRoom bookedRoom) async {
+    return await _bookRoomProvider.isRoomAvailable(bookedRoom);
+  }
 }

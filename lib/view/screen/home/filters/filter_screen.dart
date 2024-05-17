@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hba/core/constant/color.dart';
 import 'package:hba/core/constants.dart';
 import 'package:hba/core/enum.dart';
@@ -35,7 +36,7 @@ class _FilterSearchScreenState extends State<FilterSearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Filters"),
+        title: Text("filters".tr),
       ),
       body: BlocBuilder<SearchFilterCubit, SearchFilterState>(
         bloc: _showFilterCubit,
@@ -54,7 +55,7 @@ class _FilterSearchScreenState extends State<FilterSearchScreen> {
                           _showFilterCubit
                               .onChangeFilterType(FilterType.HOTELS);
                         },
-                        child: Text("Hotels",
+                        child: Text("hotels".tr,
                             style: TextStyle(
                                 color: state.filterType == FilterType.HOTELS
                                     ? Colors.white
@@ -76,7 +77,7 @@ class _FilterSearchScreenState extends State<FilterSearchScreen> {
                                 .onChangeFilterType(FilterType.ROOMS);
                           },
                           child: Text(
-                            "Rooms",
+                            "rooms".tr,
                             style: TextStyle(
                                 color: state.filterType == FilterType.ROOMS
                                     ? Colors.white
@@ -91,12 +92,12 @@ class _FilterSearchScreenState extends State<FilterSearchScreen> {
                   ],
                 ),
                 HeadingWidget(
-                  title: "City",
+                  title: "city".tr,
                   padding: 20,
                   textStyle:
                       TextStyle(fontWeight: FontWeight.w500, fontSize: 21),
                   child: CustomDropDown<String>(
-                    hintText: "choose city",
+                    hintText: "chooseCity".tr,
                     verticalDropdownPadding: 15,
                     dropDownItems: Constants.cities.map((String value) {
                       return DropdownMenuItem<String>(
@@ -120,12 +121,12 @@ class _FilterSearchScreenState extends State<FilterSearchScreen> {
                     child: Column(
                       children: [
                         HeadingWidget(
-                          title: "Room Type",
+                          title: "roomType".tr,
                           padding: 20,
                           textStyle: TextStyle(
                               fontWeight: FontWeight.w500, fontSize: 21),
                           child: CustomDropDown<String>(
-                            hintText: "choose type",
+                            hintText: "chooseType".tr,
                             verticalDropdownPadding: 15,
                             dropDownItems:
                                 Constants.categories.map((String value) {
@@ -147,7 +148,7 @@ class _FilterSearchScreenState extends State<FilterSearchScreen> {
                           height: 10,
                         ),
                         HeadingWidget(
-                            title: "Price",
+                            title: "price".tr,
                             padding: 20,
                             textStyle: TextStyle(
                                 fontWeight: FontWeight.w500, fontSize: 21),
@@ -213,7 +214,7 @@ class _FilterSearchScreenState extends State<FilterSearchScreen> {
                                 : null));
                       },
                       child: Text(
-                        "Save",
+                        "save".tr,
                         style: TextStyle(color: Colors.white),
                       ),
                       style: ElevatedButton.styleFrom(
@@ -228,7 +229,7 @@ class _FilterSearchScreenState extends State<FilterSearchScreen> {
                           _showFilterCubit.resetFilterData();
                         },
                         child: Text(
-                          "reset",
+                          "reset".tr,
                           style: TextStyle(color: Colors.white),
                         ),
                         style: ElevatedButton.styleFrom(

@@ -5,6 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:hba/controller/hotel_detail_controller.dart';
+import 'package:hba/core/constant/color.dart';
 import 'package:hba/data/model/hotel_model.dart';
 import 'package:hba/view/screen/hotel_detail/widgets/carousel_slider.dart';
 
@@ -33,7 +34,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
     Get.put(HotelDetailControllerImp(widget.hotelModel.hotelsId!));
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hotels' Details"),
+        title: Text("hotelDetail".tr),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -66,7 +67,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                           itemCount: 5,
                           itemBuilder: (context, _) => const Icon(
                             Icons.star,
-                            color: Colors.blue,
+                            color: AppColor.general,
                           ),
                           ignoreGestures: true,
                           itemSize: 15,
@@ -114,7 +115,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    "OverView",
+                    "overView".tr,
                     style: const TextStyle(
                       fontSize: 20,
                       color: Colors.black,
@@ -130,7 +131,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                     height: 10,
                   ),
                   Text(
-                    "Rooms",
+                    "rooms".tr,
                     style: const TextStyle(
                         fontSize: 20,
                         color: Colors.black,
@@ -164,8 +165,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                           ),
                         )
                       : Center(
-                          child: Text(
-                              "This hotel doesn\'t have any rooms to rent!"),
+                          child: Text("noRoomsToRent".tr),
                         ),
                 );
               },

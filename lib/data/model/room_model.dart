@@ -12,6 +12,7 @@ class RoomsModel {
   String? hotelId;
   double? rating;
   String? description;
+  String? roomNumber;
 
   RoomsModel(
       {this.id,
@@ -20,6 +21,7 @@ class RoomsModel {
       this.hotelId,
       this.type,
       this.rating,
+      this.roomNumber,
       this.description});
 
   RoomsModel.fromJson(Map<String, dynamic> json) {
@@ -32,12 +34,14 @@ class RoomsModel {
   }
 
   RoomsModel.fromQueryDocumentSnapshot(QueryDocumentSnapshot json) {
+    print(json.data());
     id = json.id!;
     price = json['price'];
     hotelId = json['hotelId'];
     rating = json['rating'] is int ? json['rating'].toDouble() : json['rating'];
     imageUrl = json['imageUrl'];
     type = json['type'];
+    roomNumber = json['roomNumber'];
     //description = json['description'];
   }
 

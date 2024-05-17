@@ -18,6 +18,11 @@ class BookRoomLoaded extends BookRoomState {
   List<Object?> get props => [];
 }
 
+class BookRoomChecked extends BookRoomState {
+  @override
+  List<Object?> get props => [];
+}
+
 class BookRoomError extends BookRoomState {
   final String error;
 

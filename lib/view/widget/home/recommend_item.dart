@@ -98,7 +98,7 @@ class RecommendItem extends StatelessWidget {
           ),
         ),
         Text(
-          room.price!.toString(),
+          room.price!.toString() + " \$",
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w500,
