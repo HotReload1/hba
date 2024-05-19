@@ -11,12 +11,16 @@ import 'package:hba/view/widget/home/setting_item.dart';
 import 'package:hba/view/widget/settings/profile.dart';
 
 import '../../screen/auth/login.dart';
+import 'package:hba/injection_container.dart';
 
 class SettingsList extends StatelessWidget {
   const SettingsList({super.key});
 
   signOut(BuildContext context) async {
-    await FirebaseAuth.instance.signOut();
+    await Future.wait(
+        [FirebaseAuth.instance.signOut(), sl.reset(dispose: false)]);
+    initInjection();
+
     Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (_) => Login()), (route) => false);
   }

@@ -67,6 +67,13 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _animationController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: _animation.value,

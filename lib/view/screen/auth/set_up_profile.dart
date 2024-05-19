@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:hba/view/screen/added/home_page.dart';
 import 'package:hba/view/screen/auth/login.dart';
+import 'package:hba/view/screen/home/home.dart';
 
 import '../../../bloc/profile/profile_cubit.dart';
 import '../../../core/enum.dart';

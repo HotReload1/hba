@@ -11,6 +11,7 @@ import 'package:hba/data/model/room_model.dart';
 import 'package:hba/view/widget/custom_alert_dialog.dart';
 import 'package:hba/view/widget/paypal_checkout.dart';
 
+import '../../bloc/reservations/reservation_cubit.dart';
 import '../../core/constant/color.dart';
 import '../../core/loaders/loading_overlay.dart';
 import '../../core/utils.dart';
@@ -65,6 +66,7 @@ class _DialogContentState extends State<DialogContent> {
   GlobalKey<FormState> formKey = GlobalKey();
 
   final _bookRoomCubit = sl<BookRoomCubit>();
+  final _reservationCubit = sl<ReservationCubit>();
 
   book() async {
     if (formKey.currentState != null && formKey.currentState!.validate()) {
@@ -123,6 +125,11 @@ class _DialogContentState extends State<DialogContent> {
           LoadingOverlay.of(context).hide();
         } else if (state is BookRoomLoaded) {
           LoadingOverlay.of(context).hide();
+          if ((_reservationCubit.state is ReservationLoaded)) {
+            _reservationCubit.getReservations();
+          }
+          LoadingOverlay.of(context).hide();
+
           showDialog(
               context: context,
               builder: (context) {

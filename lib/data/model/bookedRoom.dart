@@ -37,6 +37,7 @@ class BookedRoom {
       'startDate': this.startDate,
       'bookedDate': this.bookedDate,
       'nightsCount': this.nightsCount,
+      'totalPrice': this.totalPrice,
       'userId': FirebaseAuth.instance.currentUser!.uid,
     };
   }

@@ -32,11 +32,9 @@ class ReservationRepository {
 
     final hotelRes = await _hotelProvider.getHotelsByIds(hotelIds);
     final roomRes = await _roomProvider.getRecommendedById(roomIds);
-    print("try");
     print(hotelRes.docs[0].data());
     final hotels = getHotelListFromListMap(hotelRes.docs);
     final rooms = getRoomListFromListMap(roomRes.docs);
-    print("Done");
 
     await Future.forEach(bookedRooms, (element) {
       HotelModel hotel =
