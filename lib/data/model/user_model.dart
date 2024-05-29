@@ -24,8 +24,8 @@ class UserModel {
     return {
       'id': this.id,
       'email': this.email,
-      'firstName': this.userName,
-      'lastName': this.phoneNumber,
+      'userName': this.userName,
+      'phoneNumber': this.phoneNumber,
       'birthDate': this.birthDate,
       'gender': genderToString(this.gender!),
       'createdAt': this.createdAt,
@@ -37,8 +37,8 @@ class UserModel {
     return UserModel(
       id: map['id'],
       email: map['email'],
-      userName: map['firstName'],
-      phoneNumber: map['lastName'],
+      userName: map['userName'],
+      phoneNumber: map['phoneNumber'],
       birthDate: map['birthDate'],
       gender: stringToGender(map['gender']),
       createdAt: map['createdAt'],
