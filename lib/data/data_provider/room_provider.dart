@@ -14,7 +14,7 @@ class RoomProvider {
   Future<QuerySnapshot<Map<String, dynamic>>> getRecommendedRooms() async {
     return await FirebaseFirestore.instance
         .collection(FireStoreKeys.rooms_collections)
-        .orderBy("rating", descending: true)
+        .where("withOffer", isEqualTo: true)
         .limit(5)
         .get();
   }

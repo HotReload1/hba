@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hba/core/constant/color.dart';
 import 'package:hba/data/model/room_model.dart';
+import '../../../core/ui/responsive_text.dart';
 import 'custom_image.dart';
 
 class RecommendItem extends StatelessWidget {
@@ -52,15 +54,38 @@ class RecommendItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          room.type!,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            color: AppColor.textColor,
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
+        Row(
+          children: [
+            Text(
+              room.type!,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                color: AppColor.textColor,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Expanded(
+              child: Visibility(
+                visible: room.withOffer!,
+                child: ResponsiveText(
+                  textWidget: Text(
+                    "OFF \n" + room.offer!.toString() + "%",
+                    style: const TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
+                        overflow: TextOverflow.fade,
+                        color: AppColor.general,
+                        height: 1),
+                  ),
+                ),
+              ),
+            )
+          ],
         ),
         // const SizedBox(
         //   height: 5,

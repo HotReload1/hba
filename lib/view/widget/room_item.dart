@@ -115,18 +115,34 @@ class RoomItem extends StatelessWidget {
             const SizedBox(
               height: 3,
             ),
-            ResponsiveText(
-              textWidget: Text(
-                "${room.price}\$",
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: AppColor.general,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ResponsiveText(
+                  textWidget: Text(
+                    "${room.price}\$",
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: AppColor.general,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
-              ),
-            ),
+                Visibility(
+                  visible: room.withOffer!,
+                  child: Text(
+                    "  (" + room.offer!.toString() + "% OFF" + ")",
+                    style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: AppColor.general,
+                        height: 1),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
         // FavoriteBox(

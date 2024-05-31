@@ -47,7 +47,7 @@ class HomeControllerImp extends HomeController {
     statusRequest = StatusRequest.loading;
     List res = await Future.wait([
       _exploreRepository.getTopHotels(),
-      _roomRepository.getRecommendedHotels()
+      _roomRepository.getRecommendedRooms()
     ]);
 
     hotels.addAll(res[0]);

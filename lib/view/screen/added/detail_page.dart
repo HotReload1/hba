@@ -100,32 +100,79 @@ class _DetailPageState extends State<DetailPage> {
                                     ),
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 10, horizontal: 20),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          widget.room.price.toString(),
-                                          style: const TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
+                                    child: widget.room.withOffer!
+                                        ? Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                widget.room.offer!.toString() +
+                                                    "% OFF",
+                                                style: const TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.white,
+                                                    height: 1),
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Text(
+                                                "${widget.room.price! - (widget.room.price! * widget.room.offer! / 100)}" +
+                                                    "/" +
+                                                    'night'.tr,
+                                                style: TextStyle(
+                                                    fontSize: 22,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.white,
+                                                    height: 1),
+                                              ),
+                                              SizedBox(
+                                                height: 7,
+                                              ),
+                                              Text(
+                                                widget.room.price.toString() +
+                                                    "/" +
+                                                    'night'.tr,
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.grey.shade300,
+                                                    height: 1,
+                                                    decoration: TextDecoration
+                                                        .lineThrough),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ],
+                                          )
+                                        : Row(
+                                            children: [
+                                              Text(
+                                                widget.room.price.toString(),
+                                                style: const TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              const Text(
+                                                ' / ',
+                                                style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              Text(
+                                                'night'.tr,
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                        const Text(
-                                          ' / ',
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        Text(
-                                          'night'.tr,
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
                                   ),
                                 ),
                               ],

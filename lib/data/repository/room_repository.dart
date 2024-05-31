@@ -12,7 +12,7 @@ class RoomRepository {
     return hotels;
   }
 
-  Future<List<RoomsModel>> getRecommendedHotels() async {
+  Future<List<RoomsModel>> getRecommendedRooms() async {
     final res = await _roomProvider.getRecommendedRooms();
     final List<RoomsModel> hotels = getRoomListFromListMap(res.docs);
     return hotels;
